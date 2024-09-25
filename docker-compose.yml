@@ -1,1 +1,25 @@
-# Your Solution
+version: '3'
+services:
+  book_catalog:
+    image: sit722week7na.azurecr.io/book_catalog:v1
+    build:
+      context: ./book_catalog
+      dockerfile: Dockerfile
+    container_name: book-catalog
+    platform: linux/amd64
+    ports:
+    - "8000:8000"
+    environment: 
+    - DATABASE_URL=postgresql://week07_odmn_user:VgxGG64t0KFhH1qFtxfKSiYAWOyFrVUW@dpg-crppvf0gph6c73a19fr0-a.oregon-postgres.render.com/week07_odmn
+
+  inventory_management:
+    image: sit722week7na.azurecr.io/inventory_management:v1
+    build:
+      context: ./inventory_management
+      dockerfile: Dockerfile
+    container_name: inventory-management
+    platform: linux/amd64
+    ports:
+      - "8001:8001"
+    environment: 
+     - DATABASE_URL=postgresql://week07_odmn_user:VgxGG64t0KFhH1qFtxfKSiYAWOyFrVUW@dpg-crppvf0gph6c73a19fr0-a.oregon-postgres.render.com/week07_odmn
